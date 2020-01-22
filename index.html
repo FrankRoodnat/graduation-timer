@@ -1,91 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Graduation Countdown</title>
+    <meta name="author" content="Frank Roodnat & Lorenzo de Lijser" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Expo Countdown</title>
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<body>
+    <meta
+      name="description"
+      content="Countdown for our Gradiation Exposition."
+    />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <link rel="shortcut icon" type="image/png" href="./img/icon.png" />
+
+    <meta name="apple-mobile-web-app-title" content="Graduation Countdown" />
+    <script defer src="./sw.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+  </head>
+
+  <body>
     <p>
-      <svg width="75" height="75" viewBox="0 0 738 894" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="75"
+        height="75"
+        viewBox="0 0 738 894"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M615.025 89.8328L323.63 105.351C307.751 106.196 292.352 111.84 279.697 121.451L47.2718 297.906C27.6572 312.794 38.3692 342.023 62.9595 340.712L113.761 338.005C108.281 354.062 107.658 371.426 113.111 388.194C105.969 396.691 103.03 408.375 107.121 419.539C110.831 429.661 119.285 436.223 128.961 438.854L144.521 555.503C145.874 565.647 156.272 571.933 165.877 568.413L218.561 549.105C228.176 545.581 232.049 534.065 226.527 525.449L163.026 426.369C168.71 418.109 170.922 407.638 167.213 397.517C163.232 386.653 153.826 379.791 143.263 377.676C138.808 363.312 141.45 348.2 150.054 336.079L354.358 325.203C363.822 324.696 381.334 321.973 398.291 309.102L630.716 132.648C650.337 117.747 639.628 88.527 615.025 89.8328ZM417.643 334.59C393.87 352.632 369.379 356.453 356.058 357.159L204.565 365.232L230.293 476.643C242.457 509.834 333.026 507.155 432.59 470.666C532.155 434.177 603.007 377.698 590.842 344.507L538.483 242.845L417.643 334.59Z"
-          fill="currentColor" />
-        <path fill-rule="evenodd" clip-rule="evenodd"
+          fill="currentColor"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
           d="M289.667 532.708C269.052 568.134 257.246 609.322 257.246 653.275C257.246 785.856 364.666 893.275 497.246 893.275C629.827 893.275 737.246 785.856 737.246 653.275C737.246 546.766 667.92 456.495 571.916 425.111C510.244 478.553 375.012 532.361 289.667 532.708ZM467.15 690.049L552.504 752.081C557.73 755.856 564.988 754.694 568.762 749.565L596.053 712.017C599.827 706.791 598.762 699.533 593.537 695.759L532.085 651.049V517.791C532.085 511.404 526.859 506.178 520.472 506.178H474.021C467.634 506.178 462.408 511.404 462.408 517.791V680.662C462.408 684.339 464.15 687.823 467.15 690.049Z"
-          fill="currentColor" />
-      </svg><br>
+          fill="currentColor"
+        /></svg
+      ><br />
       <span id="demo"></span>
     </p>
-  <script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Jun 15, 2020 00:00:00").getTime();
+    <script>
+      // Set the date we're counting down to
+      var countDownDate = new Date("Jun 15, 2020 00:00:00").getTime();
 
-    // Update the count down every 1 second
-    var x = setInterval(function () {
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+        // Get today's date and time
+        var now = new Date().getTime();
 
-      // Get today's date and time
-      var now = new Date().getTime();
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML =
+          days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 
-      // Display the result in the element with id="demo"
-      document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    </script>
+    <style>
+      @import url("https://rsms.me/inter/inter.css");
 
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+      html {
+        overflow: hidden;
       }
-    }, 1000);
-  </script>
-  <style>
-    @import url("https://rsms.me/inter/inter.css");
-
-    html{
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      text-align: center;
-      justify-content: center;
-      align-content: center;
-      margin: 0;
-    }
-
-    p {
-      font-size: 40px;
-      font-family: 'Inter',Arial, Helvetica, sans-serif;
-      font-weight: 700;
-      font-feature-settings: 'tnum' 1;
-    }
-
-    @media (prefers-color-scheme: dark) {
       body {
-        color: #fc5353;
-        background-color: #191919;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        text-align: center;
+        justify-content: center;
+        align-content: center;
+        background: #fff;
+        color: #2a2924;
       }
 
-      svg {
-        fill: #fff;
+      p {
+        font-size: 40px;
+        font-family: "Inter", Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-feature-settings: "tnum" 1;
       }
-    }
-  </style>
-</body>
 
+      @media (prefers-color-scheme: dark) {
+        body {
+          color: #e7e7e7;
+          background-color: #24282a;
+        }
+      }
+    </style>
+  </body>
 </html>
