@@ -27,21 +27,17 @@ body {
     align-content: center;
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--notion-dark-background);
+        color: var(--notion-dark-text);
+    }
+}
+
 p {
     font-size: 48px;
     font-weight: 700;
     font-feature-settings: "tnum"1;
-}
-
-svg {
-    padding-bottom: 8px;
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        color: var(--notion-dark-text);
-        background-color: var(--notion-dark-background);
-    }
 }
 
 @media (max-width: 480px) {
@@ -54,4 +50,8 @@ svg {
     p {
         font-size: 28px;
     }
+}
+
+svg {
+    padding-bottom: 8px;
 }
