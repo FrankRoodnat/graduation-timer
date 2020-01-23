@@ -1,0 +1,41 @@
+@import url('https://rsms.me/inter/inter.css');
+    html { font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+    html { font-family: 'Inter var', sans-serif; }
+}
+
+:root {
+    --notion-light-background: rgb(255, 255, 255);
+    --notion-light-text: rgb(42, 41, 36);
+    --notion-dark-background: rgb(47, 52, 55);
+    --notion-dark-text: rgb(231, 231, 231);
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    background: var(--notion-light-background);
+    color: var(--notion-light-text);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+}
+
+p {
+    font-size: 48px;
+    font-weight: 700;
+    font-feature-settings: "tnum"1;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: var(--notion-dark-text);
+        background-color: var(--notion-dark-background);
+    }
+}

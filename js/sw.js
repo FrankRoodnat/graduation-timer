@@ -8,4 +8,4 @@ self.addEventListener("activate", evt => {
   console.log("service worker has been activated");
 });
 
-this.addEventListener("fetch", function(event) {});
+this.addEventListener("fetch", function (event) { });
