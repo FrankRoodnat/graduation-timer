@@ -33,9 +33,25 @@ p {
     font-feature-settings: "tnum"1;
 }
 
+svg {
+    padding-bottom: 8px;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         color: var(--notion-dark-text);
         background-color: var(--notion-dark-background);
+    }
+}
+
+@media (max-width: 480px) {
+    p {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 320px) {
+    p {
+        font-size: 28px;
     }
 }
